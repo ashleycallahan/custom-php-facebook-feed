@@ -2,17 +2,17 @@
 
 	// ================= EDIT THE VARIABLES BELOW ===================== //
 	
-	// Twitter username
+	// Facebook username
 	$facebookuser = "IndianaUniversity";
 		
-	// Number of Tweets to display
+	// Number of posts to display
 	$noposts = 15;
 
 	// Length of time between renewing the cache file in seconds (2 hours in this case)
-	$cachetime = 10; 
+	$cachetime = 7200; 
 	
 	// Server path to parent folder
-	$cachepath = "/ip/iuwebdev/www/arc2/social-media/facebook/_php/facebook/";
+	$cachepath = "/ip/iuwebdev/www/arc2/social-media/facebook/_php/facebook/cache.txt";
 	
 	// CREATE A FACEBOOK APPLICATION TO GET THE FOLLOWING VARIABLES (https://developers.facebook.com/apps)
 	
@@ -25,9 +25,8 @@
 
 	// ================= STOP EDITING! ===================== //
 	
-	$cachefile = "cache.txt";
-    if(file_exists($cachefile) && time() < filemtime($cachefile) + $cachetime){
-		$json = file_get_contents($cachefile,0,null,null);
+    if(file_exists($cachepath) && time() < filemtime($cachepath) + $cachetime){
+		$json = file_get_contents($cachepath,0,null,null);
 		$json_output = json_decode($json, true);
 	}
 	else {
@@ -35,7 +34,7 @@
 		$jsonurl = "https://graph.facebook.com/".$facebookuser."/posts?limit=".$noposts."&".$access_token;
 		$json = file_get_contents($jsonurl,0,null,null);
 		$json_output = json_decode($json, true);
-		$fp = fopen($cachepath.$cachefile, 'w');
+		$fp = fopen($cachepath, 'w');
 		fwrite($fp, $json);
 		fclose($fp);
 	}
