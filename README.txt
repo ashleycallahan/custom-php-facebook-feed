@@ -2,8 +2,8 @@
 * Custom PHP Facebook Feed
 *
 * Version: 1.0
-* Author: IU Communications
-* Author URI: http://communications.iu.edu
+* Author: Ashley Callahan
+* Author URI: http://www.ashleycallahan.net
 *************************************************/
 
 /****************************************
@@ -29,7 +29,7 @@
 	
 	3.3 Save.
 	
-4. Open the feed.php file in a web browser (http://YOURURLHERE.indiana.edu/_php/facebook/feed.php). This should return the initial JSON feed and set the cache.
+4. Open the feed.php file in a web browser (Example: http://YOURURLHERE.com/_php/facebook/feed.php). This should return the initial JSON feed and set the cache.
 	
 5. Edit /_php/facebook/feed.php
 	
