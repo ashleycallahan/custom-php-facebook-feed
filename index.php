@@ -24,22 +24,20 @@
 		margin: 0 0 5px 0;
 		padding: 0;	
 	}
-	.facebook-custom-feed li span {
-		display: block;	
-	}
 	.facebook-custom-feed li a {
 		color: #990000;
 		text-decoration: none;
 	}	
+	.facebook-custom-feed li a:hover,
+	.facebook-custom-feed li a:focus {
+		text-decoration: underline;	
+	}
 	.facebook-custom-feed .facebook-custom-feed-photo {
 		overflow: hidden;	
 	}
 	.facebook-custom-feed img.facebook-custom-feed-photo {
 		float: left;
 		margin: 5px 10px 10px 0;	
-	}
-	.facebook-custom-feed .facebook-custom-feed-likes span {
-		display: inline;	
 	}
 </style>
 </head>

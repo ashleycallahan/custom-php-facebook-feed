@@ -22,7 +22,13 @@
 	  // OAuth settings = Client Secret
 	  $client_secret = "dce26c83db4c07e1c59caefe9edbbe75";
 	
-
+	// Default timezone (Reference: http://www.php.net/manual/en/timezones.php)
+	$timezone = "America/Indiana/Indianapolis";
+	
+	// Date format (Reference: http://php.net/manual/en/function.date.php) 
+	$dateformat = "l, F, j, g:ia";
+	
+	
 	// ================= STOP EDITING! ===================== //
 	
     if(file_exists($cachepath) && time() < filemtime($cachepath) + $cachetime){
@@ -42,8 +48,9 @@
 	echo "<ul class='facebook-custom-feed'>";
 	for($i=0; $i<$noposts; $i++){
 		echo "<li><p>";
-		echo "<a href='https://www.facebook.com/".$posts['data'][$i][from][name]."' target='_blank' class='facebook-custom-feed-account'>".$posts['data'][$i][from][name]."</a>";
-		echo "<span class='facebook-custom-feed-date'>".date("l, F, j, g:ia",strtotime($posts['data'][$i][created_time]))."</span>";
+		echo "<a href='https://www.facebook.com/".$posts['data'][$i][from][name]."' target='_blank' class='facebook-custom-feed-account'>".$posts['data'][$i][from][name]."</a><br />";
+		date_default_timezone_set($timezone);
+		echo "<span class='facebook-custom-feed-date'>".date($dateformat,strtotime($posts['data'][$i][created_time]))."</span><br />";
 		if($posts['data'][$i][message]){
 			$post_message = "";
 			$post_message = $posts['data'][$i][message];
@@ -68,10 +75,10 @@
 				echo "</a>";
 			}
 			if($posts['data'][$i][link] && $posts['data'][$i][name]){
-				echo "<a href='".$posts['data'][$i][link]."' target='_blank' class='facebook-custom-feed-photo-link'>".$posts['data'][$i][name]."</a>";
+				echo "<a href='".$posts['data'][$i][link]."' target='_blank' class='facebook-custom-feed-photo-link'>".$posts['data'][$i][name]."</a><br />";
 			}
 			if($posts['data'][$i][caption]){
-				echo "<span class='facebook-custom-feed-photo-caption'>".$posts['data'][$i][caption]."</span>";
+				echo "<span class='facebook-custom-feed-photo-caption'>".$posts['data'][$i][caption]."</span><br />";
 			}
 			if($posts['data'][$i][description]){
 				echo "<span class='facebook-custom-feed-photo-description'>".$posts['data'][$i][description]."</span>";
@@ -79,7 +86,7 @@
 			echo "</p>";
 		}
 		echo "<p class='facebook-custom-feed-likes'><span class='facebook-custom-feed-liked'>".$posts['data'][$i][likes][count]." people like this</span>";
-		echo " • <a href='https://www.facebook.com/".$posts['data'][$i][id]."' target='_blank' class='facebook-custom-feed-like'>Like</a>";
+		echo " &#149; <a href='https://www.facebook.com/".$posts['data'][$i][id]."' target='_blank' class='facebook-custom-feed-like'>Like</a>";
 		echo "</p></li>";
 	}
 	echo "</ul>";
