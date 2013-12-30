@@ -1,7 +1,7 @@
 /*************************************************
 * Custom PHP Facebook Feed
 *
-* Version: 1.0
+* Version: 1.01
 * Author: Ashley Callahan
 * Author URI: http://www.ashleycallahan.net
 *************************************************/
@@ -18,7 +18,7 @@
 	
 	3.1 Edit the value of the following variables:
 		- $facebookuser
-		- $notweets
+		- $noposts
 		- $cachepath
 		- $client_id
 		- $client_secret

@@ -12,7 +12,7 @@
 	$cachetime = 7200; 
 	
 	// Server path to parent folder
-	$cachepath = "/ip/iuwebdev/www/arc2/social-media/facebook/_php/facebook/cache.txt";
+	$cachepath = "/public_html/custom-php-facebook-feed/_php/facebook/cache.txt";
 	
 	// CREATE A FACEBOOK APPLICATION TO GET THE FOLLOWING VARIABLES (https://developers.facebook.com/apps)
 	
@@ -48,7 +48,7 @@
 	echo "<ul class='facebook-custom-feed'>";
 	for($i=0; $i<$noposts; $i++){
 		echo "<li><p>";
-		echo "<a href='https://www.facebook.com/".$posts['data'][$i][from][name]."' target='_blank' class='facebook-custom-feed-account'>".$posts['data'][$i][from][name]."</a><br />";
+		echo "<a href='https://www.facebook.com/".$facebookuser."' target='_blank' class='facebook-custom-feed-account'>".$posts['data'][$i][from][name]."</a><br />";
 		date_default_timezone_set($timezone);
 		echo "<span class='facebook-custom-feed-date'>".date($dateformat,strtotime($posts['data'][$i][created_time]))."</span><br />";
 		if($posts['data'][$i][message]){
@@ -85,8 +85,13 @@
 			}
 			echo "</p>";
 		}
-		echo "<p class='facebook-custom-feed-likes'><span class='facebook-custom-feed-liked'>".$posts['data'][$i][likes][count]." people like this</span>";
-		echo " &#149; <a href='https://www.facebook.com/".$posts['data'][$i][id]."' target='_blank' class='facebook-custom-feed-like'>Like</a>";
+		$jsonurl_likes = "https://graph.facebook.com/".$posts['data'][$i][object_id]."/likes?summary=1";
+		$json_likes = file_get_contents($jsonurl_likes,0,null,null);
+		$json_output_likes = json_decode($json_likes, true);
+		$likes = $json_output_likes;
+		echo "<p class='facebook-custom-feed-likes'><span class='facebook-custom-feed-likes'>".$likes['summary'][total_count]." people like this</span>";
+		echo " &#149; <a href='".$posts['data'][$i][link]."' target='_blank' class='facebook-custom-feed-like'>Like</a>";
+		echo " &#149; <a href='http://www.facebook.com/sharer/sharer.php?u=".$posts['data'][$i][link]."' target='_blank' class='facebook-custom-feed-share'>Share</a>";
 		echo "</p></li>";
 	}
 	echo "</ul>";
