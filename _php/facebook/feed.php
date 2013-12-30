@@ -12,7 +12,7 @@
 	$cachetime = 7200; 
 	
 	// Server path to parent folder
-	$cachepath = "/public_html/custom-php-facebook-feed/_php/facebook/cache.txt";
+	$cachepath = "/public_html/php/facebook/cache.txt";
 	
 	// CREATE A FACEBOOK APPLICATION TO GET THE FOLLOWING VARIABLES (https://developers.facebook.com/apps)
 	
