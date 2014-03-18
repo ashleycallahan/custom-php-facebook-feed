@@ -41,9 +41,9 @@
 		$json = file_get_contents($jsonurl,0,null,null);
 		$json_output = json_decode($json, true);
 		for($i=0; $i<$noposts; $i++){
-			$jsonurl_likes = "https://graph.facebook.com/".$json_output[data][$i][object_id]."/likes?summary=1";
-			$json_likes = file_get_contents($jsonurl_likes,0,null,null);
 			if($i==0){
+				$jsonurl_likes = "https://graph.facebook.com/".$json_output[data][$i][object_id]."/likes?summary=1";
+				$json_likes = file_get_contents($jsonurl_likes,0,null,null);
 				$likes .= $json_likes;
 			} else {
 				$likes .= ", ".$json_likes;
